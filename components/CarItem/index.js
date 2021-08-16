@@ -3,31 +3,44 @@ import {View, Text, ImageBackground} from 'react-native';
 import styles from './styles';
 import StyledButton from '../StyledButton'
 
-const CarItem = () => {
+const CarItem = (props) => {
+
+    const { name, tagLine, tagLineCTA, image } = props;
+
     return (
         <View style={styles.carContainer}>
 
-            <ImageBackground source={require('../../assets/images/ModelX.jpeg')} style={styles.image}/>
+            <ImageBackground source={image} style={styles.image}/>
 
             <View style={styles.titles}>
-            <Text style={styles.title}>Model S</Text>
-            <Text style={styles.subTitle}>Starting at $999</Text>
+                <Text style={styles.title}>{name}</Text>
+                <Text style={styles.subTitle}>
+                    {tagLine}
+                    {' '}
+                    <Text style={styles.subTitleCTA}>
+                        {tagLineCTA}
+                    </Text>
+                </Text>
+                
             </View>
 
-            <StyledButton 
-                type="primary" 
-                content={"Custom Order"} 
-                onPress={() => {
-                    console.warn("custom order was pressed")
-            }} />
+            <View style={styles.buttonsContainer}>
 
-            <StyledButton 
-                type="secondary" 
-                content={"Existing Inventory"} 
-                onPress={() => {
-                    console.warn("Existing Inventory was pressed")
-            }} />
+                <StyledButton 
+                    type="primary" 
+                    content={"Custom Order"} 
+                    onPress={() => {
+                        console.warn("custom order was pressed")
+                }} />
 
+                <StyledButton 
+                    type="secondary" 
+                    content={"Existing Inventory"} 
+                    onPress={() => {
+                        console.warn("Existing Inventory was pressed")
+                }} />
+
+            </View>
         </View>
     )
 }
